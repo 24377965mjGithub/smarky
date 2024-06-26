@@ -1,11 +1,6 @@
 <?php $_shouldextend[1]=1; ?>
 <?php $this->startSection('content'); ?>
- <h1>Hello</h1>
-
- <form action="_file-upload.php" enctype="multipart/form-data" method="post">
- <input type="file" name="file" id=""> <br>
- <button type="submit">Upload</button>
- </form>
+ <h1>Welcome to Smarky App!</h1>
 
 <?php $this->stopSection(); ?>
 <?php if (isset($_shouldextend[1])) { echo $this->runChild('layouts.app'); } ?>
