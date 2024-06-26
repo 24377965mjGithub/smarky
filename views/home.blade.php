@@ -2,14 +2,9 @@
 @section('content')
     <h1>Hello</h1>
 
-    @forelse ($users as $user)
-        <div>
-            <b>{{ $user['name'] }}</b> <br>
-            {{ $user['email'] }}
-        </div>
-    @empty
-        <p>No Users</p>
-    @endforelse
+    <form action="_file-upload.php" enctype="multipart/form-data" method="post">
+        <input type="file" name="file" id=""> <br>
+        <button type="submit">Upload</button>
+    </form>
 
-    <a href="about.php">About</a>
 @endsection
