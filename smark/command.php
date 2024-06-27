@@ -73,14 +73,12 @@ while (true) {
         $importDB = shell_exec($importTablesCommand);
 
         // Check if the command was executed successfully
-        // if ($importDB) {
-        //     echo "Database imported successfully.";
-        // } else {
-        //     echo "An error occurred while importing the database.";
-        //     echo "<pre>$importDB</pre>";
-        // }
-
-        exit;
+        if ($importDB === null) {
+            echo "Database imported successfully.";
+        } else {
+            echo "An error occurred while importing the database.";
+            echo "<pre>$importDB</pre>";
+        }
     } elseif($c === 'exit') {
         echo "Goodbye.";
         break;
