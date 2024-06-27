@@ -1,5 +1,7 @@
 <?php
 
+use App\Smark\Smark;
+
 echo "SMARK";
 
 while (true) {
@@ -11,6 +13,7 @@ while (true) {
         echo "\n";
         echo "make:view - Make a PHP file with a view blade template. \n";
         echo "make:process - Make a PHP file for backend processes. \n";
+        echo "db:migrate - Migrate the database table. \n";
         echo "\n";
     } elseif($c === 'make:view') {
         echo "View Name: ";
@@ -51,10 +54,37 @@ while (true) {
         } else {
             echo "Process Already Exists.";
         }
+    } elseif($c === 'db:migrate') {// Database configuration
+
+        require './smark/Smark.php';
+
+        $env = Smark::jsonRead('./env.json');
+
+        $dbHost = $env['DB_HOST'];
+        $dbUsername = $env['DB_USERNAME'];
+        $dbPassword = $env['DB_PASSWORD'];
+        $dbName = $env['DB_NAME'];
+        $sqlFilePath = 'database/database.sql';
+
+        // Command to import SQL file
+        $importTablesCommand = "mysql -h $dbHost -u $dbUsername -p$dbPassword $dbName < $sqlFilePath";
+
+        // Execute the command
+        $importDB = shell_exec($importTablesCommand);
+
+        // Check if the command was executed successfully
+        // if ($importDB) {
+        //     echo "Database imported successfully.";
+        // } else {
+        //     echo "An error occurred while importing the database.";
+        //     echo "<pre>$importDB</pre>";
+        // }
+
+        exit;
     } elseif($c === 'exit') {
         echo "Goodbye.";
         break;
-    } else {
+    }else {
         echo "INVALID COMMAND";
     }
 }
